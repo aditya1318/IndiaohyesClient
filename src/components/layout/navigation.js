@@ -16,12 +16,12 @@ const Nav = () => (
             <li className={styles['item']}><Link to='/'>Home</Link></li>
             <li className={styles['item']}><Link to='/'>About</Link></li>
             <li className={styles['item']}><Link to='/'>Contact</Link></li>
-            <li className={styles['item']}><Link to='/'>Tv</Link></li>
+            <li className={styles['item']}><Link to='/service/fg'>Tv</Link></li>
         </ul>
 
         <div className='space-x-8 flex items-center'>
             <Link to='/' className='flex items-center'><BagIcon className='mr-1' /> Shop</Link>
-            <Button isLink={true} to='/' className='py-1 px-3 rounded-md border-2 border-violet'>Login</Button>
+            <Button isLink={true} to='/login' className='py-1 px-3 rounded-md border-2 border-violet'>Login</Button>
         </div>
     </nav>
 );
