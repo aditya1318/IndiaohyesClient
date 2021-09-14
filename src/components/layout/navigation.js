@@ -16,7 +16,7 @@ const Nav = () => (
             <li className={styles['item']}><Link to='/'>Home</Link></li>
             <li className={styles['item']}><Link to='/'>About</Link></li>
             <li className={styles['item']}><Link to='/'>Contact</Link></li>
-            <li className={styles['item']}><Link to='/service/fg'>Tv</Link></li>
+            <li className={styles['item']}><Link to='/services/fg'>Tv</Link></li>
         </ul>
 
         <div className='space-x-8 flex items-center'>
