@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import FormGroup from '../../components/form/formgroup';
-import Button from '../../components/button2';
+import Button from '../../components/buttons/button';
 import Package from '../../components/package';
 
 const data = {

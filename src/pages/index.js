@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../services/api';
-import getBaseUrl from '../services/detail';
+import axios, { URL } from '../services/api';
 
 import Navigation from '../components/layout/navigation';
 import Heading from '../components/heading';
 import Category from '../components/category';
 import Loader from '../components/loader';
+import Service from '../components/service';
 
 import BagIcon from '../assets/bag.svg';
 import logo from '../images/logo.png';
@@ -14,6 +14,7 @@ import omImg from '../images/om.png';
 const IndexPage = () => {
 	// State variables
 	const [categories, setCategories] = useState(null);
+	const [services, setServices] = useState(null);
 
 	// Fetching data from API
 	useEffect(() => {
@@ -22,6 +23,14 @@ const IndexPage = () => {
 			.then(response => setCategories(response.data.data.categories))
 			.catch(err => {
 				setCategories([]);
+				console.log(err.response);
+			});
+
+		axios
+			.get('/services')
+			.then(response => setServices(response.data.data.services))
+			.catch(err => {
+				setServices([]);
 				console.log(err.response);
 			});
 	}, []);
@@ -33,36 +42,21 @@ const IndexPage = () => {
 
 			<Navigation />
 
-			<header className='bg-cream min-h-0 px-20 mb-10 pb-10	 md:grid md:grid-cols-2 content-center md:-mt-24'>
-
-			<div className='max-w-xl flex justify-center '>
-				<img src={omImg} alt='OM' className='' />
-				</div>
-
-				<div className='text-center'>
-					<h1 className='text-2xl leading-snug font-semibold  sm:text-3xl sm:leading-normal md:text-4xl md:leading-relaxed '>
-						<span className='inline'>From India </span>
-						<span className='lnline'>To India</span>
-						<br className='sm:hidden'/>
+			<header className='bg-cream min-h-screen px-20 grid grid-cols-2 items-center -mt-24'>
+				<div>
+					<h1 className='text-5xl leading-relaxed font-semibold'>
+						<span className='block'>From India</span>
+						<span className='block'>To India</span>
 						<span className='block'>By India</span>
 					</h1>
 
-					<p className='mt-6 mb-12 md:text-xl  '>An E-supermarket for Indian Needs</p>
+					<p className='mt-6 mb-12'>An E-supermarket for Indian Needs</p>
 
-					<div className='grid grid-cols-2 max-w-full justify-between items-center text-xs ' >
-
-                <div>
-					<button className='border-2 border-violet bg-violet text-white py-2 px-4 '>Let's start</button>
-				</div>
-			    <div>
-					<button className='border-2 border-violet bg-white py-2 px-4 '>Quick contact</button>
-				</div>
-					</div>
+					<button className='border-2 border-violet bg-violet text-white py-3 px-6 rounded-tl-full rounded-bl-full'>Let's start</button>
+					<button className='border-2 border-violet bg-white py-3 px-6 rounded-tr-full rounded-br-full'>Quick contact</button>
 				</div>
 
-                 <div className='hidden'>
 				<img src={omImg} alt='OM' className='mt-16' />
-				</div>
 			</header>
 
 			<main>
@@ -71,12 +65,12 @@ const IndexPage = () => {
 
 					<div className='grid grid-cols-5 gap-10'>
 						{
-							categories ?
-								categories.length ?
-									categories.map((cat, i) => <Category
-										title={cat.title}
-										image={`${getBaseUrl()}/images/${cat.image}`}
+							categories
+								? categories.length
+									? categories.map((cat, i) => <Category
 										key={i}
+										title={cat.title}
+										image={`${URL}/images/${cat.image}`}
 									/>)
 									: <h2>No data found</h2>
 								: <div className='flex justify-center col-span-full'>
@@ -85,6 +79,35 @@ const IndexPage = () => {
 						}
 					</div>
 				</section>
+
+				{
+					// Render all sections according to the data fetched
+					categories?.length && services?.length
+						? <section className='bg-gray-100 p-8 space-y-16 rounded-xl'>
+							{
+								categories.map((cat, i) =>
+									<section className='flex items-center bg-white p-6' key={i}>
+										<div className='w-1/4 mr-12'>
+											<Heading align='left'>{cat.title} services</Heading>
+											<p className='mt-8'>{cat.description}</p>
+										</div>
+										<div className='grid grid-flow-col gap-x-12 overflow-x-scroll pt-32 pb-4' style={{ gridAutoColumns: '18rem' }}>
+											{
+												services.map((srv, i) => <> {/* Remove empty element for duplicate key error in console */}
+													<Service data={srv} key={i} />
+													<Service data={srv} />
+													<Service data={srv} />
+													<Service data={srv} />
+													<Service data={srv} />
+												</>)
+											}
+										</div>
+									</section>
+								)
+							}
+						</section>
+						: <></>
+				}
 			</main>
 
 			<footer className='grid grid-cols-3 gap-y-20 py-16 px-20 bg-gray-800 text-white'>

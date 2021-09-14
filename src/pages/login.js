@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from '../components/button2';
+import Button from '../components/buttons/button';
 import FormGroup from '../components/form/formgroup';
 import Form from '../components/form';
 

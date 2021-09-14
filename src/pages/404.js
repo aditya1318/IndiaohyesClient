@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Heading from '../components/heading';
-import Button from '../components/button2';
+import Button from '../components/buttons/button';
 
 import NotfoundSVG from '../assets/notfound.svg';
 

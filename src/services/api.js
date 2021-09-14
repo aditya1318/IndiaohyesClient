@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-import getBaseUrl from './detail';
+export const URL = 'http://localhost:3000';
 
 export default axios.create({
-    baseURL: `${getBaseUrl()}/api`,
+    baseURL: `${URL}/api`,
     timeout: 10000
 });
