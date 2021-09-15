@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const URL = 'http://localhost:3000';
+export const URL = 'https://indiaohyesserver.herokuapp.com/';
 
 export default axios.create({
     baseURL: `${URL}/api`,
