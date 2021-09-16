@@ -6,7 +6,11 @@ import Curtain from '../abstracts/curtain';
 import Bubble from '../abstracts/bubble';
 
 import LogoImg from '../../images/logo.png';
-import InstagramIcon from '../../assets/bag.svg';
+
+import InstagramIcon from '../../assets/instagram.svg';
+import FacebookIcon from '../../assets/facebook.svg';
+import LinkedInIcon from '../../assets/linkedin.svg';
+import TwitterIcon from '../../assets/twitter.svg';
 
 const Form = props => {
     return (
@@ -37,9 +41,9 @@ const Form = props => {
 
                 <div className='flex space-x-6'>
                     <InstagramIcon />
-                    <InstagramIcon />
-                    <InstagramIcon />
-                    <InstagramIcon />
+                    <FacebookIcon />
+                    <LinkedInIcon />
+                    <TwitterIcon />
                 </div>
 
                 <Curtain coordinates='bottom-0 right-0' />

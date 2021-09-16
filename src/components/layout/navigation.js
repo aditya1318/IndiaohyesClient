@@ -9,14 +9,14 @@ import BagIcon from '../../assets/bag.svg';
 import * as styles from '../../styles/layout/nav.module.scss';
 
 const Nav = () => (
-    <nav className='flex justify-between py-6 px-8 bg-cream'>
+    <nav className='flex justify-between py-6 px-8 bg-cream tab-port:hidden'>
         <img src={logo} alt='LOGO' className='w-30 h-10 object-cover' />
 
         <ul className='flex items-center space-x-16'>
             <li className={styles['item']}><Link to='/'>Home</Link></li>
             <li className={styles['item']}><Link to='/'>About</Link></li>
             <li className={styles['item']}><Link to='/'>Contact</Link></li>
-            <li className={styles['item']}><Link to='/services/fg'>Tv</Link></li>
+            <li className={styles['item']}><Link to='/'>Tv</Link></li>
         </ul>
 
         <div className='space-x-8 flex items-center'>
