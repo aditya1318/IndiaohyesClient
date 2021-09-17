@@ -3,6 +3,12 @@ module.exports = {
   darkMode: false,
   theme: {
     extend: {
+      screens: {
+        'tab-land': { 'max': '75em' },
+        'tab-port': { 'max': '56.25em' },
+        'phone': { 'max': '37.5em' },
+      },
+
       colors: {
         cream: '#f6efe8',
         violet: {
@@ -13,6 +19,11 @@ module.exports = {
 
       minHeight: {
         screen: '100vh'
+      },
+
+      fontSize: {
+        'tab-land': '87.5%',
+        'phone': '75%'
       }
     },
   },
