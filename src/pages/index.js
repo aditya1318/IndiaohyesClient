@@ -143,7 +143,7 @@ const IndexPage = () => {
 										)
 									}
 								</div>
-								<ul className='flex sticky bottom-0 justify-between bg-violet text-gray-100 capitalize shadow-lg p-6'>
+								<ul className='flex sticky top-0 justify-between bg-violet text-gray-100 capitalize shadow-lg px-6 py-4'>
 									{categories?.map((cat, i) => <li key={i}><a href={`/#section-categories-${i}`}>{cat.title}</a></li>)}
 								</ul>
 							</section>
