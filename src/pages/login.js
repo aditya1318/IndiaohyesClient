@@ -1,22 +1,103 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { navigate } from 'gatsby';
+import { Helmet } from 'react-helmet';
+import axios from '../services/api';
+import { login } from '../services/auth';
 
+import Layout from '../components/layout';
 import Button from '../components/buttons/button';
 import FormGroup from '../components/form/formgroup';
 import Form from '../components/form';
+import Loader from '../components/loader';
+import Popup from '../components/form/popup';
+
+import delay from '../utils/timer';
+import Exception from '../utils/exception';
 
 const LoginPage = () => {
-    return (
-        <Form title='Login' alternateLink='/signup' alternateText={`Don't have an account? Sign up now!`}>
-            <FormGroup id='phone' inputType='number' label='enter your phone number' />
-            <div className='text-center'>
-                <Button>Send OTP</Button>
-            </div>
+    const [loaderState, setLoaderState] = useState(false);
+    const [popupDetails, setPopupDetails] = useState();
 
-            <FormGroup id='otp' inputType='number' label='Enter OTP' />
-            <div className='text-center'>
-                <Button type='submit'>Verify</Button>
-            </div>
-        </Form>
+    return (
+        <>
+            <Helmet>
+                <title>Indiaohyes &mdash; Login</title>
+            </Helmet>
+            <Layout>
+                <Popup config={popupDetails} />
+
+                <Form
+                    title='Login'
+                    onSubmit={async e => {
+                        e.preventDefault();
+
+                        try {
+                            setLoaderState(true);
+
+                            const res = await axios.post('/users/verify-login', { otp: e.target['otp'].value });
+
+                            login(res.data.data.token);
+
+                            setLoaderState(false);
+                            setPopupDetails({ visible: true, message: 'Logged in successfully!', bg: 'green-300' });
+
+                            await delay(2);
+                            navigate('/');
+                        }
+                        catch (err) {
+                            setLoaderState(false);
+                            setPopupDetails({ visible: true, message: err.response?.data.message, bg: 'red-300' });
+
+                            await delay(3);
+                            setPopupDetails({ visible: false });
+                        }
+                    }}
+                >
+                    <FormGroup id='phone' inputType='tel' label='enter your phone number' />
+                    <div className='text-center'>
+                        <Button
+                            onClick={async e => {
+                                try {
+                                    const phoneNumber = e.target.closest('form')['phone'].value;
+                                    if (!phoneNumber || phoneNumber.length !== 13)
+                                        throw new Exception({
+                                            data: {
+                                                message: 'Please enter a valid phone number'
+                                            }
+                                        });
+
+
+                                    setLoaderState(true);
+                                    const response = await axios.post(
+                                        '/users/login',
+                                        { phone: phoneNumber }
+                                    );
+                                    setLoaderState(false);
+
+                                    setPopupDetails({ visible: true, message: response.data.message, bg: 'green-300' });
+                                    await delay(3);
+                                    setPopupDetails({ visible: false });
+                                }
+                                catch (err) {
+                                    setLoaderState(false);
+
+                                    setPopupDetails({ visible: true, message: err.response?.data.message, bg: 'red-300' });
+                                    await delay(3);
+                                    setPopupDetails({ visible: false });
+                                }
+                            }}
+                        >
+                            Send OTP
+                        </Button>
+                    </div>
+
+                    <FormGroup id='otp' label='Enter OTP' />
+                    <div className='flex justify-center'>
+                        {loaderState ? <Loader /> : <Button type='submit'>Verify</Button>}
+                    </div>
+                </Form>
+            </Layout>
+        </>
     );
 };
 
