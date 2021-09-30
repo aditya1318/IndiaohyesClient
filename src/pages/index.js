@@ -127,7 +127,11 @@ const IndexPage = () => {
 					{
 						// Render all sections according to the data fetched
 						categories?.length && services?.length
-							? <section className='bg-gray-100 pt-5 rounded-xl'>
+						?
+						 <section className='bg-gray-100 pt-5 rounded-xl'>
+							 <ul className='flex sticky top-0 justify-between bg-violet text-gray-100 capitalize shadow-lg px-6 py-4'>
+									{categories?.map((cat, i) => <li key={i}><a href={`/#section-categories-${i}`}>{cat.title}</a></li>)}
+								</ul>
 								<div className='px-5 space-y-5'>
 									{
 										categories.map((cat, i) =>
@@ -143,9 +147,6 @@ const IndexPage = () => {
 										)
 									}
 								</div>
-								<ul className='flex sticky top-0 justify-between bg-violet text-gray-100 capitalize shadow-lg px-6 py-4'>
-									{categories?.map((cat, i) => <li key={i}><a href={`/#section-categories-${i}`}>{cat.title}</a></li>)}
-								</ul>
 							</section>
 							: <></>
 					}
