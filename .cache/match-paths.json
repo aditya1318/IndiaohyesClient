@@ -1,0 +1,6 @@
+[
+    {
+        "path": "/services/[slug]/",
+        "matchPath": "/services/:slug"
+    }
+]
