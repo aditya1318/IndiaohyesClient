@@ -1,26 +1,30 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
-    title: "indiaohyes",
+    siteUrl: 'https://www.yourdomain.tld',
+    title: 'indiaohyes',
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-sass`,
+      resolve: 'gatsby-plugin-sass',
       options: {
         postCssPlugins: [
-          require("tailwindcss"),
-          require("./tailwind.config.js")
+          require('tailwindcss'),
+          require('./tailwind.config.js')
         ]
       }
     },
 
     {
-      resolve: "gatsby-plugin-react-svg",
+      resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
           include: /assets/
         }
       }
+    },
+
+    {
+      resolve: 'gatsby-plugin-react-helmet'
     }
-  ],
+  ]
 };
