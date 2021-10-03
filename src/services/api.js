@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getUser } from './auth';
 
-export const URL = 'http://localhost:3000';
+export const URL = 'https://indiaohyesserver.herokuapp.com';
 
 const instance = axios.create({
     baseURL: `${URL}/api`,
