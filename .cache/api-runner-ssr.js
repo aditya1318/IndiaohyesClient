@@ -1,6 +1,6 @@
 var plugins = [{
       name: 'gatsby-plugin-react-helmet',
-      plugin: require('D:/IndiaohyesClient/node_modules/gatsby-plugin-react-helmet/gatsby-ssr'),
+      plugin: require('/Users/adityamohite/Desktop/IndiaohyesClient/node_modules/gatsby-plugin-react-helmet/gatsby-ssr'),
       options: {"plugins":[]},
     }]
 /* global plugins */

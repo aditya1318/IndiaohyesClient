@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { getUser } from './auth';
 
-export const URL = 'https://indiaohyesserver.herokuapp.com';
+export const URL = 'http://localhost:3000';
 
 const instance = axios.create({
     baseURL: `${URL}/api`,
     timeout: 10000,
-    withCredentials: true
+    withCredentials: true,
+    credential: 'include'
 });
 
 instance.interceptors.request.use(config => {

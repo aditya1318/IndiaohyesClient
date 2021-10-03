@@ -6085,24 +6085,24 @@ module.exports = withSideEffect;
 /***/ }),
 
 /***/ "react-dom/server":
-/*!***************************************************************************!*\
-  !*** external "D:\\IndiaohyesClient\\node_modules\\react-dom\\server.js" ***!
-  \***************************************************************************/
+/*!************************************************************************************************!*\
+  !*** external "/Users/adityamohite/Desktop/IndiaohyesClient/node_modules/react-dom/server.js" ***!
+  \************************************************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("D:\\IndiaohyesClient\\node_modules\\react-dom\\server.js");
+module.exports = require("/Users/adityamohite/Desktop/IndiaohyesClient/node_modules/react-dom/server.js");
 
 /***/ }),
 
 /***/ "react":
-/*!**********************************************************************!*\
-  !*** external "D:\\IndiaohyesClient\\node_modules\\react\\index.js" ***!
-  \**********************************************************************/
+/*!*******************************************************************************************!*\
+  !*** external "/Users/adityamohite/Desktop/IndiaohyesClient/node_modules/react/index.js" ***!
+  \*******************************************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("D:\\IndiaohyesClient\\node_modules\\react\\index.js");
+module.exports = require("/Users/adityamohite/Desktop/IndiaohyesClient/node_modules/react/index.js");
 
 /***/ })
 
