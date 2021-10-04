@@ -12,7 +12,7 @@ import BagIcon from '../assets/bag.svg';
 const ShopPage = () => {
 	// State variables
 	const [data, setData] = useState();
-	const [cart, setCart] = useState();
+	const [	cart, setCart] = useState();
 
 	// Fetching data from API
 	useEffect(() => {
@@ -85,7 +85,7 @@ const ShopPage = () => {
 								<span className='font-semibold'>Grand Total:</span>
 								<span>₹{cart.totalPrice + cart.totalPrice / 10}</span>
 							</p>
-							<Button className='w-full'>Check out</Button>
+							<Link to='/checkout'> <Button className='w-full'> Check out </Button></Link>
 						</div>
 						: <></>
 				}

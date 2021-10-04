@@ -7,7 +7,7 @@ const Category = props => (
         boxShadow: '9px 9px 18px #cacaca, -9px -9px 18px #f6f6f6'
     }}>
         <img src={props.image} alt='SERVICE' className='h-24 w-20 object-cover' />
-        <a href={props.href} className='flex capitalize items-center'>{props.title} service <ArrowIcon /></a>
+        <a href={props.href} className='flex capitalize'>{props.title} service <ArrowIcon /></a>
     </div>
 );
 

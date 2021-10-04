@@ -9,6 +9,7 @@ exports.components = {
   "component---src-pages-index-js": () => import("./../../../src/pages/index.js" /* webpackChunkName: "component---src-pages-index-js" */),
   "component---src-pages-login-js": () => import("./../../../src/pages/login.js" /* webpackChunkName: "component---src-pages-login-js" */),
   "component---src-pages-me-index-js": () => import("./../../../src/pages/me/index.js" /* webpackChunkName: "component---src-pages-me-index-js" */),
+  "component---src-pages-profile-js": () => import("./../../../src/pages/profile.js" /* webpackChunkName: "component---src-pages-profile-js" */),
   "component---src-pages-quick-js": () => import("./../../../src/pages/quick.js" /* webpackChunkName: "component---src-pages-quick-js" */),
   "component---src-pages-services-[slug]-js": () => import("./../../../src/pages/services/[slug].js" /* webpackChunkName: "component---src-pages-services-[slug]-js" */),
   "component---src-pages-shop-js": () => import("./../../../src/pages/shop.js" /* webpackChunkName: "component---src-pages-shop-js" */)

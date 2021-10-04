@@ -1,9 +1,98 @@
-import * as React from "react"
+
 import { Link } from 'gatsby'
+import React, { useState, useEffect } from 'react';
+import axios, { URL } from '../services/api';
 
 
+function loadRazerpay(){
+    return new Promise((reslove)=>{
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js'
+   
+    script.onload= ()=>{
+        reslove(true)
+    }
+    script.onerror = ()=>{
+        reslove(false)
+    }
+    document.body.appendChild(script)
+});
+}
 
 const Checkout = () => {
+
+   async function showRazerpay(){
+
+        const res = await loadRazerpay()
+
+        if(!res){
+            alert('razor SDK Failed to load')
+            return
+        }
+
+       
+
+        const data = await fetch('http://localhost:3000/api/order', { method: 'POST' }).then((t) =>
+        t.json()
+    )
+        
+        
+        const options = {
+            "key": "rzp_test_riR65g07X6XqfK", 
+         "amount": 10000*100,
+            "currency": "INR",
+            "name": "Dummy Academy",
+            "description": "Pay & Checkout this Course, Upgrade your DSA Skill",
+             "image": "https://media.geeksforgeeks.org/wp-content/uploads/20210806114908/dummy-200x200.png",
+            "order_id": data.id,  
+            "handler": function (response){
+                console.log(response)
+                alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature)
+            },
+            "prefill": {
+               //Here we are prefilling random contact
+              "contact":"9876543210", 
+                //name and email id, so while checkout
+              "name": "Twinkle Sharma",  
+              "email": "smtwinkle@gmail.com"  
+            },
+           "notes" : {
+              "description":"Best Course for SDE placements",
+           
+            }, 
+            "theme": {
+                "color": "#2300a3"
+            }
+        };
+        var razorpayObject = new window.Razorpay(options);
+       
+            razorpayObject.open();
+        
+        
+     
+    }
+
+ 
+
+    const [Details, setDetails] = useState();
+ 
+
+
+    useEffect(() => {
+        axios
+        .get('/users/cart')
+        .then(res => {
+            setDetails(res.data.data.cart)
+           
+        } )
+        .catch(err => {
+            setDetails([]);
+            console.log(err.response);
+        });
+             
+    }, []);
 
     return (
         <div className='div h-screen bg-gray-100'>
@@ -176,8 +265,9 @@ const Checkout = () => {
                     </div>
 
                 </div>
-
-
+{
+Details
+?
                 <div className='w-2/3 h-full px-4 mt-8'>
 
                     <div className='bg-white w-full py-8 flex flex-col px-3 '>
@@ -188,10 +278,10 @@ const Checkout = () => {
                             <div className='flex justify-between'>
                                 <div>
                                     <spam >Items</spam>
-                                    <spam> (2):</spam>
+                                    <spam> ():</spam>
                                 </div>
 
-                                <spam>$300</spam>
+                                <spam>₹{Details.totalPrice}</spam>
                             </div>
 
                             <div className='flex justify-between'>
@@ -200,7 +290,7 @@ const Checkout = () => {
 
                                 </div>
 
-                                <spam>$23</spam>
+                                <spam>₹23</spam>
                             </div>
 
                             <div className='flex justify-between'>
@@ -209,7 +299,7 @@ const Checkout = () => {
 
                                 </div>
 
-                                <spam>$12</spam>
+                                <spam>₹12</spam>
                             </div>
 
                             <div className='border-2 mx-3 mt-6'></div>
@@ -220,19 +310,22 @@ const Checkout = () => {
 
                                 </div>
 
-                                <spam>$335</spam>
+                                <spam>₹{Details.totalPrice + Details.totalPrice / 10}</spam>
                             </div>
                         </div>
                         <div className='flex flex-col space-y-2'>
-                            <button className='bg-purple-400 px-8 py-2 rounded mt-4 text-white'>Place Order</button>
+                            <button className='bg-purple-400 px-8 py-2 rounded mt-4 text-white' onClick={showRazerpay}>Place Order</button>
 
                             <p className='text-xs font-light text-gray-500'>By placing your order agree to our company <spam className='underline'>Privacy policy</spam>  and <spam className='underline'>Conditions of use</spam></p>
                         </div>
                     </div>
 
                 </div>
+                	: <></>
+}
 
             </div>
+
 
         </div>
     )
