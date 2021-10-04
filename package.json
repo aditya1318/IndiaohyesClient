@@ -25,7 +25,8 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
-    "sass": "^1.38.0"
+    "sass": "^1.38.0",
+    "use-cookie-consent": "^0.1.19"
   },
   "devDependencies": {
     "autoprefixer": "^10.3.1",

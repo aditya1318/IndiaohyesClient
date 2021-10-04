@@ -1,6 +1,24 @@
-import React from 'react'
+
 import Layout from '../components/layout';
-const profile = () => {
+import React, { useState, useEffect } from 'react';
+import axios, { URL } from '../services/api';
+import { data } from 'autoprefixer';
+const Profile = () => {
+
+const [User,setUser] = useState();
+
+
+    useEffect(() => {
+       axios
+       .get('/me')
+       .then(res => setUser(res.data.data.me))
+       .catch(err => {
+				setUser([]);
+				console.log(err.response);
+			});
+     
+    }, []);
+  
     return (
         //ad
         <Layout>
@@ -9,17 +27,21 @@ const profile = () => {
       <div className='w-full h-full'>
       
    
-
-   
+      {
+   User
+   ? 
+  
       <form className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 h-full phone:w-full    '>
       <h1 className='mb-6 text-2xl font-semibold'> Profile</h1>
       <div className='phone:flex-col flex w-full space-x-10 phone:space-x-0'>
       <div className= 'w-full'>
+        
       <div className='mb-4'>
+
       <label className='block text-gray-700 text-sm font-bold mb-2' for='username'>
-      First Name
+     First Name
       </label>
-      <input className='shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-500' id='username' type='text' placeholder='first name'/>
+      <input className='shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-500' id='username' type='text' placeholder= {User.name}/>
       </div>
 
       <div className='mb-6'>
@@ -33,16 +55,16 @@ const profile = () => {
       <div className='w-full'>
       <div className='mb-4'>
       <label className='block text-gray-700 text-sm font-bold mb-2' for='text'>
-      Email
+    Email
       </label>
-      <input className='shadow appearance-none border 0 rounded w-full py-4 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-purple-500' id='password' type='text' placeholder='Email'/>
+      <input className='shadow appearance-none border 0 rounded w-full py-4 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-purple-500' id='password' type='text' placeholder={User.email}/>
       
       </div>
       <div className='mb-6'>
       <label className='block text-gray-700 text-sm font-bold mb-2' for='text'>
       Phone
       </label>
-      <input className='shadow appearance-none border 0 rounded w-full py-4 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-purple-500' id='password' type='number' placeholder='+91 888-999-999'/>
+      <input className='shadow appearance-none border 0 rounded w-full py-4 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-purple-500' id='password' type='number' placeholder={User.phone}/>
       
       </div>
       </div>
@@ -51,7 +73,7 @@ const profile = () => {
       <label className='block text-gray-700 text-sm font-bold mb-2' for='text'>
       Address
       </label>
-      <input className='shadow appearance-none border 0 rounded w-full py-4 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-purple-500 overflow-ellipsis' id='password' type='text' placeholder='flat/house/villa'/>
+      <input className='shadow appearance-none border 0 rounded w-full py-4 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-purple-500 overflow-ellipsis' id='password' type='text' placeholder={User.address}/>
       
       </div>
       <div className='flex justify-end space-x-5 '>
@@ -65,11 +87,14 @@ const profile = () => {
       
       
       </div>
+
       
       
       
       
       </form>
+      :<></>
+}
       
       </div>
       
@@ -80,4 +105,4 @@ const profile = () => {
     )
 }
 
-export default profile
+export default Profile
