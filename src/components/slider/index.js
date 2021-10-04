@@ -11,8 +11,8 @@ const Slider = props => {
     const MAX_SLIDES = props.children?.length;
 
     return (
-        <div className='w-full flex justify-between items-center'>
-        <div className='relative overflow-x-hidden' style={{ minHeight: props.minHeight || '40vh' }}>
+        <div className='w-full flex justify-between items-center 'style={{ minHeight: props.minHeight || '40vh' }}>
+        <div className='relative overflow-x-hidden h-full w-full' style={{ minHeight: props.minHeight || '40vh' }}>
             {
                 props.children?.map((child, slideNumber) => (
                     <Slide key={slideNumber} translate={100 * (slideNumber - currentSlide)}>
