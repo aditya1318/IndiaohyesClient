@@ -11,7 +11,10 @@ const Slider = props => {
     const MAX_SLIDES = props.children?.length;
 
     return (
-        <div className='relative overflow-x-hidden' style={{ minHeight: props.minHeight || '40vh' }}>
+        <div className='relative' style={{ minHeight: props.minHeight || '40vh' }}>
+        <Control align='left' label={<ArrowLeft />} onClick={() => setCurrentSlide(currentSlide - 1 >= 0 ? currentSlide - 1 : MAX_SLIDES - 1)} />
+           
+        <div className='relative overflow-x-hidden grid grid-cols-3 ' style={{ minHeight: props.minHeight || '40vh' }}>
             {
                 props.children?.map((child, slideNumber) => (
                     <Slide key={slideNumber} translate={100 * (slideNumber - currentSlide)}>
@@ -22,9 +25,10 @@ const Slider = props => {
                 <></>
             }
 
-            <Control align='left' label={<ArrowLeft />} onClick={() => setCurrentSlide(currentSlide - 1 >= 0 ? currentSlide - 1 : MAX_SLIDES - 1)} />
-            <Control align='right' label={<ArrowRight />} onClick={() => setCurrentSlide((currentSlide + 1) % MAX_SLIDES)} />
+            
         </div>
+         <Control align='right' label={<ArrowRight />} onClick={() => setCurrentSlide((currentSlide + 1) % MAX_SLIDES)} />
+         </div>
     );
 };
 
