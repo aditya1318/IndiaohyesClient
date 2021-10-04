@@ -3,10 +3,12 @@ module.exports = {
 
 
 
-	purge: ['./src/**/*.{js,jsx,ts,tsx}','./components/**/*.{js,ts,jsx,tsx}','./layout/**/*.{js,ts,jsx,tsx}'],
+	purge: ['./src/**/*.{js,jsx,ts,tsx}',
+	'./components/**/*.{js,ts,jsx,tsx}',
+	'./layout/**/*.{js,ts,jsx,tsx}'],
 
 
-	darkMode: false,
+	darkMode: 'class',
 
 
 	theme: {
