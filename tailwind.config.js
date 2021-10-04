@@ -3,7 +3,7 @@ module.exports = {
 
 
 
-	purge: ['./src/**/*.{js,jsx,ts,tsx}'],
+	purge: ["./src/pages/**/*.{js,jsx,ts,tsx}", './src/styles/**/*.css'],
 
 
 	darkMode: false,

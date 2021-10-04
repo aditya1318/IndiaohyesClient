@@ -130,7 +130,7 @@ const ServicePage = ({ params }) => {
 
            .get(`/services/slug/${params.slug}`)
 
-
+               
            .then(response => {
 
 
