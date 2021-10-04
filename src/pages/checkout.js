@@ -32,7 +32,7 @@ const Checkout = () => {
 
        
 
-        const data = await fetch('http://localhost:3000/api/order', { method: 'POST' }).then((t) =>
+        const data = await fetch('https://indiaohyesserver.herokuapp.com/api/order', { method: 'POST' }).then((t) =>
         t.json()
     )
         
