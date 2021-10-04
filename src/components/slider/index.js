@@ -11,7 +11,7 @@ const Slider = props => {
     const MAX_SLIDES = props.children?.length;
 
     return (
-        <div className='relative overflow-x-hidden' style={{ minHeight: props.minHeight || '40vh' }}>
+        <div className=' overflow-x-hidden' style={{ minHeight: props.minHeight || '40vh' }}>
              <Control align='left' label={<ArrowLeft />} onClick={() => setCurrentSlide(currentSlide - 1 >= 0 ? currentSlide - 1 : MAX_SLIDES - 1)} />
             {
 
