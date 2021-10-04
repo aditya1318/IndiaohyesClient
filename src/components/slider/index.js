@@ -21,9 +21,10 @@ const Slider = props => {
                 ||
                 <></>
             }
-
+<div className='w-full flex justify-center items-center'>
             <Control align='left' label={<ArrowLeft />} onClick={() => setCurrentSlide(currentSlide - 1 >= 0 ? currentSlide - 1 : MAX_SLIDES - 1)} />
             <Control align='right' label={<ArrowRight />} onClick={() => setCurrentSlide((currentSlide + 1) % MAX_SLIDES)} />
+            </div>
         </div>
     );
 };
