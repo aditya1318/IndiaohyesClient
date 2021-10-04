@@ -27,7 +27,8 @@ const Slider = props => {
 
             
         </div>
-         <Control  label={<ArrowRight />} onClick={() => setCurrentSlide((currentSlide + 1) % MAX_SLIDES)} />
+        
+         <Control className='flex justify-end' label={<ArrowRight />} onClick={() => setCurrentSlide((currentSlide + 1) % MAX_SLIDES)} />
          </div>
     );
 };
