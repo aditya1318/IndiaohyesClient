@@ -10,7 +10,7 @@ const [User,setUser] = useState();
 
     useEffect(() => {
        axios
-       .get('/me')
+       .get('/user/me')
        .then(res => setUser(res.data.data.me))
        .catch(err => {
 				setUser([]);
