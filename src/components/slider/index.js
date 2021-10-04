@@ -27,7 +27,7 @@ const Slider = props => {
 
             
         </div>
-         <Control align='right' label={<ArrowRight />} onClick={() => setCurrentSlide((currentSlide + 1) % MAX_SLIDES)} />
+         <Control  label={<ArrowRight />} onClick={() => setCurrentSlide((currentSlide + 1) % MAX_SLIDES)} />
          </div>
     );
 };
