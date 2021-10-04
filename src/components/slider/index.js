@@ -12,7 +12,8 @@ const Slider = props => {
 
     return (
         <div className='w-full flex justify-between items-center 'style={{ minHeight: props.minHeight || '40vh' }}>
-        <div className='relative overflow-x-hidden h-full w-full' style={{ minHeight: props.minHeight || '40vh' }}>
+             <Control align='left' label={<ArrowLeft />} onClick={() => setCurrentSlide(currentSlide - 1 >= 0 ? currentSlide - 1 : MAX_SLIDES - 1)} />
+        <div className='relative overflow-x-hidden h-full w-full'>
             {
                 props.children?.map((child, slideNumber) => (
                     <Slide key={slideNumber} translate={100 * (slideNumber - currentSlide)}>
@@ -23,7 +24,7 @@ const Slider = props => {
                 <></>
             }
 
-            <Control align='left' label={<ArrowLeft />} onClick={() => setCurrentSlide(currentSlide - 1 >= 0 ? currentSlide - 1 : MAX_SLIDES - 1)} />
+           
             <Control align='right' label={<ArrowRight />} onClick={() => setCurrentSlide((currentSlide + 1) % MAX_SLIDES)} />
             </div>
         </div>
